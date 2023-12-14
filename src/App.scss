@@ -1,0 +1,28 @@
+.intro {
+  text-align: center;
+  padding: 30px 0 80px;;
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .input {
+    input {
+      padding: 10px;
+      font-size: 22px;
+    }
+    margin-bottom: 30px;
+  }
+
+  button {
+    background: red;
+    font-size: 22px;
+    padding: 15px 24px;
+    color: #fff;
+    border: 0;
+  }
+
+}
