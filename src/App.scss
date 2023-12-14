@@ -1,6 +1,15 @@
-.intro {
+@import "./scss/variables.scss";
+
+.btg-quiz-intro {
+  color: $white;
   text-align: center;
-  padding: 30px 0 80px;;
+  padding: 30px 0 80px;
+
+  p {
+    font-size: 1.2em;
+  }
+
+
 
   .icons {
     display: flex;

@@ -13,6 +13,7 @@ function App() {
   // State
   const [selectionList, setSelectionList] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [name, setName] = useState([]); // used for display
   // const [currentSelections, setCurrentSelections] = useState([]);
   // const [currentSlide, setCurrentSlide] = useState([]);
 
@@ -36,7 +37,7 @@ function App() {
   */
 
   return (
-    <div className="intro" style={{background: `url(${quizbkg})`}}>
+    <div className="btg-quiz-intro" style={{background: `url(${quizbkg})`}}>
       {slideIndex === 0 && <EnterName updateSlideIndex={setSlideIndex} currentSlide={slideIndex} />}
       {slideIndex === 1 && "next slide"}
     </div>

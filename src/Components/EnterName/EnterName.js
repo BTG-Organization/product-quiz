@@ -1,6 +1,7 @@
 import {EnterNameData} from "../../staticData/EnterNameData.js";
 
 const EnterName = ({updateSlideIndex, currentSlide}) => {
+    // Add State for component date to send an update final when next button is clicked
     const e = EnterNameData;
     console.log("Data: ", e);
     return (
