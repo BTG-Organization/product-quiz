@@ -1,26 +1,48 @@
+import { useState } from "react";
 import {EnterNameData} from "../../staticData/EnterNameData.js";
+import "./entername.scss";
 
-const EnterName = ({updateSlideIndex, currentSlide}) => {
-    // Add State for component date to send an update final when next button is clicked
+const EnterName = ({onSubmit, updateSlideIndex, currentSlide}) => {
+    const [name, setName] = useState("");
+    const [error, setError] = useState(""); //set if string === "" || arr === []
     const e = EnterNameData;
-    console.log("Data: ", e);
+
+    const handleChange = (e) => {
+        setError("");
+        setName(e.target.value);
+    }
+
+    const handleNextChange = () => {
+        if(name !== "") {
+            updateSlideIndex(currentSlide + 1);
+            onSubmit(name, "name");
+        } else {
+            setError("Name field can not be blank");
+        }
+    }
+
+    //console.log(name, useId());
+    console.log(error);
+    
     return (
-        <>
+        <div className="quiz-enter-name">
             <h1>{e.title}</h1>
             <p>{e.tagLine}</p>
             <p>{e.inputHeading}</p>
             <div className="input">
-            <input placeholder={e.placeHolder}/>
+            <input 
+                placeholder={e.placeHolder}
+                onChange={(e) => handleChange(e)}
+            />
+            <div className="error">{error}</div>
             </div>
-            <button onClick={() => updateSlideIndex(currentSlide++)}>NEXT</button>
-
-            <div className="icons">
-                {/*  <img alt="horizontal blinds" src={horizontal} />
-                <img alt="vertical blinds" src={vertical} />
-                <img alt="roller shades" src={roller} /> 
-                <img alt="motorized blinds" src={motorized} />*/}
-            </div>
-        </>
+            {/* Create a button Component */}
+            <button 
+                onClick={handleNextChange} 
+            >
+                    NEXT
+            </button>
+        </div>
     );
 }
 

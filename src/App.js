@@ -1,11 +1,8 @@
 
 import {useState} from "react";
 import EnterName from "./Components/EnterName/EnterName";
+import Question1 from "./Components/Question1/Question1";
 import "./App.scss";
-//import horizontal from "./images/horiz.png";
-//import vertical from "./images/vert.png";
-//import roller from "./images/roller.png";
-//import motorized from "./images/motorized.png";
 import quizbkg from "./images/quizbkg.png";
 
 function App() {
@@ -14,32 +11,28 @@ function App() {
   const [selectionList, setSelectionList] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   const [name, setName] = useState([]); // used for display
-  // const [currentSelections, setCurrentSelections] = useState([]);
-  // const [currentSlide, setCurrentSlide] = useState([]);
 
-  const updateSelectionList = (selections) => {
-    setSelectionList();
+  const handleSubmitData = (data, type) => {
+    if(type === "name") {
+      setName(data);
+    } else {
+      setSelectionList([...selectionList, ...data]);
+    }
   }
-  console.log("Slide Index: ", slideIndex);
-  
-  
+    
   // Quiz Intro
-
   /* 
-  
     Questions?
     1. What is more important to you (Asthetic or Budget)
     2. How Many Window treatments do you need (one, a few, many)
     3. 
-
     last. Do you prefer to SHop Online or Have some one come to your home?
-
   */
 
   return (
     <div className="btg-quiz-intro" style={{background: `url(${quizbkg})`}}>
-      {slideIndex === 0 && <EnterName updateSlideIndex={setSlideIndex} currentSlide={slideIndex} />}
-      {slideIndex === 1 && "next slide"}
+      {slideIndex === 0 && <EnterName onSubmit={handleSubmitData} updateSlideIndex={setSlideIndex} currentSlide={slideIndex} />}
+      {slideIndex === 1 && <Question1 name={name} />}
     </div>
   );
 }

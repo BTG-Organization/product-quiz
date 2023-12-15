@@ -3,3 +3,11 @@
 .enterName {
     color: $red;
 }
+.quiz-enter-name {
+    .error {
+        color: $red;
+        padding: 10px;
+        margin: 10px; 
+        border: 1px $red solid;
+    }
+}
