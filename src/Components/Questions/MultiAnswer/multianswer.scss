@@ -1,0 +1,20 @@
+@import "../../../scss/variables.scss";
+
+.multi-answer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    div {
+        cursor: pointer;
+        color: $red;
+        font-size: 20px;
+        width: 28%;
+        padding: 30px 20px;
+        border: 2px $red solid;
+        color: white;
+        margin: 10px;
+        background: rgba(0, 0, 0, .7);
+    }
+}
