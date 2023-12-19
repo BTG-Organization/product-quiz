@@ -1,11 +1,13 @@
 import { useState } from "react";
-import {EnterNameData} from "../../staticData/EnterNameData.js";
+//import {EnterNameData} from "../../staticData/data.js";
 import "./entername.scss";
+import Button from "../../ui/Button";
 
-const EnterName = ({onSubmit, updateSlideIndex, currentSlide}) => {
+const EnterName = ({onSubmit, updateSlideIndex, currentSlide, data}) => {
     const [name, setName] = useState("");
     const [error, setError] = useState(""); //set if string === "" || arr === []
-    const e = EnterNameData;
+
+    const e = data;
 
     const handleChange = (e) => {
         setError("");
@@ -37,11 +39,11 @@ const EnterName = ({onSubmit, updateSlideIndex, currentSlide}) => {
             <div className="error">{error}</div>
             </div>
             {/* Create a button Component */}
-            <button 
+            <Button 
                 onClick={handleNextChange} 
             >
-                    NEXT
-            </button>
+                NEXT!
+            </Button>
         </div>
     );
 }

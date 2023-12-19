@@ -1,9 +1,9 @@
 @import "../../scss/variables.scss";
 
-.enterName {
-    color: $red;
-}
 .quiz-enter-name {
+    input {
+        color: $black;
+    }
     .error {
         color: $red;
         padding: 10px;
