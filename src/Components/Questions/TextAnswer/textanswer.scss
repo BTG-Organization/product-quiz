@@ -1,5 +1,12 @@
 @import "../../../scss/variables.scss";
 
+#quiz-text-answer {
+    .error {
+        color: $red;
+        padding: 10px;
+        margin: 10px; 
+    }
+}
 .quiz-text-answer {
     display: flex;
     flex-wrap: wrap;

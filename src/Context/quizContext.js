@@ -3,17 +3,16 @@ import { createContext, useState /* useEffect */ } from "react";
 const QuizContext = createContext();
 
 function QuizProvider({children}) {
-
-    const [testVal, setTestVal] = useState(1);
-    // useEffect(() => {}, []);
-    
-    const testFunc = () => {
-        console.log("success");
-        setTestVal(testVal + 1);
-    }
+    const [name, setName] = useState("");
+    const [slideIndex, setSlideIndex] = useState(0);
 
     return (
-        <QuizContext.Provider value={{testFunc, testVal}}>
+        <QuizContext.Provider value={{
+            name,
+            setName,
+            slideIndex, 
+            setSlideIndex
+        }}>
             {children}
         </QuizContext.Provider>
     );

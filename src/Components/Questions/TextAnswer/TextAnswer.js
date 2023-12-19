@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./textanswer.scss";
-import { useContext } from "react";
 import QuizContext from "../../../Context/quizContext";
+import Button from "../../../ui/Button";
 
 // Multi Select Question w/ custom data through the data prop
 // This component can be a multi answer or single answer through the type prop.
 // Pass type="multi" or (type="single" or nothing) for single
 
-const TextAnswer = ({name, type, data}) => {
+const TextAnswer = ({type, data}) => {
     const [selections, setSelections] = useState([]);
+    const [error, setError] = useState("");
 
-    const quizContext = useContext(QuizContext);
+    const qc = useContext(QuizContext);
 
     const handleClick = (e) => {
         const text = e.target?.innerText;
@@ -27,19 +28,26 @@ const TextAnswer = ({name, type, data}) => {
         }
     }
 
-    //console.log(selections);
-
-    const handleContextClick = () => {
-        quizContext.testFunc();
+    const handleNextClick = (e) => {
+        
+        if(selections.length) {
+            // send off selections to the context function
+            qc.setSlideIndex(qc.slideIndex + 1);
+        } else {
+            setError("Name field can not be blank");
+        }
     }
+    
 
-    //Testing the context func return value
-    console.log("From Context: ", quizContext.testVal);
+    //need handle nextClick func. Should it be here or in context??? Context!
+
+    //console.log(selections);
+    console.log("Context: ", qc);
 
     return (
         <>
-            <div id="multi-text-answer">
-                <h1>{data.title} {name[0].toUpperCase() + name.slice(1)}!</h1>
+            <div id="quiz-text-answer">
+                <h1>{data.title} {qc.name[0].toUpperCase() + qc.name.slice(1)}!</h1>
                 <p>{data.tagline}</p>
                 <div className="quiz-text-answer">
                     {data.questions?.map((question, i) => {
@@ -52,7 +60,10 @@ const TextAnswer = ({name, type, data}) => {
                         )
                     })}
                 </div>
-                <button onClick={handleContextClick}>Next Question</button>
+                <div className="error">{error}</div>
+                <Button onClick={handleNextClick}>
+                    Next Question
+                </Button>
             </div>
         </>
     );

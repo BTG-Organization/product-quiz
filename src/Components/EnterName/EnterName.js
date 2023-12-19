@@ -1,46 +1,47 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 //import {EnterNameData} from "../../staticData/data.js";
 import "./entername.scss";
 import Button from "../../ui/Button";
+import QuizContext from "../../Context/quizContext";
 
-const EnterName = ({onSubmit, updateSlideIndex, currentSlide, data}) => {
+const EnterName = ({data}) => {
     const [name, setName] = useState("");
-    const [error, setError] = useState(""); //set if string === "" || arr === []
+    const [error, setError] = useState("");
 
-    const e = data;
+    const d = data;
+    const qc = useContext(QuizContext);
 
     const handleChange = (e) => {
         setError("");
         setName(e.target.value);
     }
 
-    const handleNextChange = () => {
+    const handleNextClick = (e) => {
         if(name !== "") {
-            updateSlideIndex(currentSlide + 1);
-            onSubmit(name, "name");
+            qc.setName(name);
+            qc.setSlideIndex(qc.slideIndex + 1);          
         } else {
             setError("Name field can not be blank");
         }
     }
-
-    //console.log(name, useId());
-    console.log(error);
+    
+    console.log("Context(EnterName): ", qc);
     
     return (
         <div className="quiz-enter-name">
-            <h1>{e.title}</h1>
-            <p>{e.tagLine}</p>
-            <p>{e.inputHeading}</p>
+            <h1>{d.title}</h1>
+            <p>{d.tagLine}</p>
+            <p>{d.inputHeading}</p>
             <div className="input">
             <input 
-                placeholder={e.placeHolder}
+                placeholder={d.placeHolder}
                 onChange={(e) => handleChange(e)}
             />
             <div className="error">{error}</div>
             </div>
             {/* Create a button Component */}
             <Button 
-                onClick={handleNextChange} 
+                onClick={handleNextClick} 
             >
                 NEXT!
             </Button>
