@@ -1,11 +1,12 @@
 @import "../../scss/variables.scss";
 
-.quiz-enter-name {
-    input {
-        color: $black;
-        &:focus {
-            outline: none;
+.quiz-email {
+    .input {
+        input {
+          padding: 10px;
+          font-size: 22px;
         }
+        margin-bottom: 30px;
     }
     .error {
         color: $red;

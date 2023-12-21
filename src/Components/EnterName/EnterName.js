@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 //import {EnterNameData} from "../../staticData/data.js";
 import "./entername.scss";
 import Button from "../../ui/Button";
@@ -10,6 +10,15 @@ const EnterName = ({data}) => {
 
     const d = data;
     const qc = useContext(QuizContext);
+
+    
+    useEffect(() => {
+        setTimeout(function(){ window.scrollTo({
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth' 
+           }); }, 2000);
+    },[]);
 
     const handleChange = (e) => {
         setError("");
@@ -25,25 +34,22 @@ const EnterName = ({data}) => {
         }
     }
     
-    console.log("Context(EnterName): ", qc);
-    
     return (
-        <div className="quiz-enter-name">
+        <div className="quiz-enter-name" style={{ animation: "quiz-slide-fadeIn 1s" }}>
             <h1>{d.title}</h1>
             <p>{d.tagLine}</p>
             <p>{d.inputHeading}</p>
             <div className="input">
-            <input 
-                placeholder={d.placeHolder}
-                onChange={(e) => handleChange(e)}
-            />
+                <input 
+                    placeholder={d.placeHolder}
+                    onChange={(e) => handleChange(e)}
+                />
             <div className="error">{error}</div>
             </div>
-            {/* Create a button Component */}
             <Button 
                 onClick={handleNextClick} 
             >
-                NEXT!
+                {data.buttonLabel}
             </Button>
         </div>
     );
