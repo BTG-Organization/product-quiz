@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./textanswer.scss";
 import useQuizContext from "../../../hooks/use-quizContext";
-import Button from "../../../ui/Button";
+import Button from "../../../ui/Button/Button";
+import getQuestionDataByIndex from "../../../util/getQuestionDataByIndex";
 
 // Multi Select Question w/ custom data through the data prop
 // This component can be a multi answer or single answer through the type prop.
@@ -29,6 +30,16 @@ const TextAnswer = ({data}) => {
         setError(false);
     }
 
+    const handleBackClick = () => {
+        qc.setSlideIndex(qc.slideIndex - 1);
+    }
+
+    //
+    useEffect(() => {
+        setSelections(getQuestionDataByIndex(qc));
+        setError(false);
+    }, [qc]);
+
     const handleNextClick = (e) => { 
         if(selections.length) {
             qc.setAnswers(qc.slideIndex, selections);
@@ -42,13 +53,14 @@ const TextAnswer = ({data}) => {
     const renderQuestion = (data) => {  
         return data.questions?.map((question, i) => {
             if(data.type === "icon") {
-                //console.log(question.desc);
                 return (
                     <div
+                        className="icon-answer"
                         key={`${question} ${i}`}
                         style={{
                             backgroundImage: `url${question.desc}`,
-                            backgroundColor: selections.includes(question.desc) && 'red'
+                            //backgroundColor: selections.includes(question.desc) && 'red'
+                            border: selections.includes(question.desc) ? "1px solid red" : "1px solid transparent"
                         }} 
                         onClick={(e) => handleClick(e)}
                     >
@@ -58,6 +70,7 @@ const TextAnswer = ({data}) => {
             } else {
                 return (
                     <div
+                        className="text-answer"
                         key={`${question} ${i}`}
                         style={{background: selections.includes(question.q) && 'red'}} 
                         onClick={(e) => handleClick(e)}
@@ -79,8 +92,11 @@ const TextAnswer = ({data}) => {
                     {renderQuestion(data)}
                 </div>
                 {error && <div className="error">{data.error}</div>}
+                <Button onClick={handleBackClick}>
+                    Back
+                </Button>
                 <Button onClick={handleNextClick}>
-                    Next Question
+                    Next
                 </Button>
             </div>
         </>

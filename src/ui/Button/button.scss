@@ -1,0 +1,10 @@
+@import "../../scss/variables.scss";
+
+button.quiz-button {
+    margin: 5px 15px;
+    background: $red;
+    font-size: 22px;
+    padding: 15px 40px;
+    color: #fff;
+    border: 0;
+}

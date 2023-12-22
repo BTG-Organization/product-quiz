@@ -1,6 +1,8 @@
+import "./button.scss";
+
 const Button = ({children, onClick}) => {
     return (
-        <button onClick={onClick}>
+        <button className="quiz-button" onClick={onClick}>
             {children}
         </button>
     );

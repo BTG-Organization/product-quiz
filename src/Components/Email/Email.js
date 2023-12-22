@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./email.scss";
-import Button from "../../ui/Button";
+import Button from "../../ui/Button/Button";
 import useQuizContext from "../../hooks/use-quizContext";
 
 function Email({data}) {
@@ -18,6 +18,10 @@ function Email({data}) {
     const handleChange = (e) => {
         const email = e.target.value;
         setEmail(email);
+    }
+
+    const handleBackClick = (e) => {
+        qc.setSlideIndex(qc.slideIndex - 1);
     }
 
     const handleNextClick = (e) => {
@@ -46,6 +50,9 @@ function Email({data}) {
                 />
             </div>
             {error && <div className="error">{data.error}</div>}
+            <Button onClick={handleBackClick}>
+                    Back
+                </Button>
             <Button onClick={handleNextClick}>
                 {data.buttonLabel}
             </Button>

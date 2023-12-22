@@ -3,8 +3,12 @@
 .quiz-email {
     .input {
         input {
-          padding: 10px;
-          font-size: 22px;
+            padding: 10px;
+            font-size: 22px;
+            &:focus {
+                outline: none;
+                background: $white;
+            }
         }
         margin-bottom: 30px;
     }

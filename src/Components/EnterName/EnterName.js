@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 //import {EnterNameData} from "../../staticData/data.js";
 import "./entername.scss";
-import Button from "../../ui/Button";
+import Button from "../../ui/Button/Button";
 import QuizContext from "../../Context/quizContext";
 
 const EnterName = ({data}) => {
@@ -18,7 +18,9 @@ const EnterName = ({data}) => {
             left: 0, 
             behavior: 'smooth' 
            }); }, 2000);
-    },[]);
+        
+        setName(qc.name);
+    },[qc]);
 
     const handleChange = (e) => {
         setError("");
@@ -33,6 +35,8 @@ const EnterName = ({data}) => {
             setError("Name field can not be blank");
         }
     }
+
+    console.log(qc);
     
     return (
         <div className="quiz-enter-name" style={{ animation: "quiz-slide-fadeIn 1s" }}>
@@ -40,7 +44,8 @@ const EnterName = ({data}) => {
             <p>{d.tagLine}</p>
             <p>{d.inputHeading}</p>
             <div className="input">
-                <input 
+                <input
+                    value={name}
                     placeholder={d.placeHolder}
                     onChange={(e) => handleChange(e)}
                 />

@@ -1,5 +1,6 @@
 import useQuizContext from "../../hooks/use-quizContext";
 import "./results.scss";
+import Button from "../../ui/Button/Button";
 
 function Results({data}) {
     const qc = useQuizContext();
@@ -13,7 +14,9 @@ function Results({data}) {
         ...qc.q1, 
         ...qc.q2, 
         ...qc.q3, 
-        ...qc.q4
+        ...qc.q4,
+        ...qc.q5,
+        ...qc.q6,
     ];
     
     return (
@@ -34,9 +37,9 @@ function Results({data}) {
                 return <h3 key={`${result}-${i}`}>- {result}</h3>
             })}
             <hr />
-            <button onClick={handleNextClick}>
+            <Button onClick={handleNextClick}>
                 {data.buttonLabel}
-            </button>
+            </Button>
         </div>
     );
 }
